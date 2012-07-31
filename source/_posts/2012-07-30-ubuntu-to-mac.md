@@ -37,10 +37,6 @@ on my ubuntu system the above two lines are considered as a single line file loa
 
 But this does not happen on mac and I had to rename all "User.php" usage in loading files to "user.php"
 
-### Things I miss on a MAC
-
-1. GIMP - I am not finding an alternative where I can open .PSD without having photoshop ( I cannot afford photoshop )
-
 ## Conclusion:
 
 > whatever it is I just love working on a MAC, specially with a iMAC and not with MAC Book Pro
