@@ -10,7 +10,7 @@ openhackindia2012 is my first participation in Yahoo!! open hack, and it was so 
 
 ### What we did?
 
-We worked on a travel related application which you can see here [trippin](http://trippin.herokuapp.com) ( if link still exists :) ). We built an application which works like this.
+We worked on a travel related application which you can see here <a href="http://trippin.herokuapp.com" target="_blank">Trippin</a> ( if link still exists :) ). We built an application which works like this.
 
 #### User needs to input the following fields:
 
