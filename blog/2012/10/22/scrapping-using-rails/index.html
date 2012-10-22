@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Scrapping using rails - Karthik KC</title>
+  <meta name="author" content="Karthik KC">
+
+  
+  <meta name="description" content="Performing scrapping using rails is something new to me at this time. I had an experience with php where I had used simple_html_dom_parser library to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://karthikkck.github.com/blog/2012/10/22/scrapping-using-rails/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Karthik KC" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Karthik KC</a></h1>
+  
+    <h2>my life, rails, ruby, webgl, js, ember.js, backbone.js</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:karthikkck.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Scrapping Using Rails</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-22T17:01:00+05:30" pubdate data-updated="true">Oct 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Performing scrapping using rails is something new to me at this time. I had an experience with php where I had used simple_html_dom_parser library to get things going along with imacros.</p>
+
+<p>With rails as stackoverlow and every blog, forum around says, I started with nokogiri. In the process I realized that I cannot click on any of the links using "onclick" event. As "onclick" is a javascript event and nokogiri does not support this.</p>
+
+<p>Now my search starts for a gem which can support javascript scrapping. Finally I figured out that there is no as such a scrapping gem like nokogiri which supports js, but we can use front-end testing gems for this. Some gem which opens a browser window at the background does the events like clicks, login, etc. on a real instance of browser running at the background.</p>
+
+<p>Finally I found the best one ( from what I read and experienced ) watir, headless. The following are the gems:</p>
+
+<pre><code>gem 'watir-webdriver'
+gem 'headless'
+</code></pre>
+
+<h2>A summary of what these gems can do:</h2>
+
+<ol>
+<li>They can fill in the forms - fill input textbox, select options, etc.</li>
+<li>They can login to a system with sessions and cookies like a real browser ( of course it is running on a real browser )</li>
+<li>They can read the html of a page and we can store the html in a variable for further processing ( here is an issue )</li>
+</ol>
+
+
+<p>Yes, we get the html but I found that watir is not that efficient in parsing the html. So I decided to use nokogiri gem for this.</p>
+
+<p>Tips &amp; code samples:</p>
+
+<p>use "sleep 0.5" efficiently throughout your code. This is necessary because it takes some time to get the html of the page when you visit a website on a browser.</p>
+
+<h4>Wait until some html gets loaded:</h4>
+
+<pre><code>until browser.link(:class =&gt; 'login-button').exists? do
+  sleep sleepTime
+end
+</code></pre>
+
+<p>If you are getting an alert window as soon as you visit a page, use this code:</p>
+
+<pre><code>begin
+  browser.goto('http://www.google.co.in')
+rescue Selenium::WebDriver::Error::UnhandledAlertError =&gt; e
+  # just to ignore the alert popup in the page
+end
+</code></pre>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Karthik KC</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-22T17:01:00+05:30" pubdate data-updated="true">Oct 22<span>nd</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://karthikkck.github.com/blog/2012/10/22/scrapping-using-rails/" data-via="" data-counturl="http://karthikkck.github.com/blog/2012/10/22/scrapping-using-rails/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/08/22/center-align-image-with-in-a-div-using-css/" title="Previous Post: Center align image with in a div using css">&laquo; Center align image with in a div using css</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/22/scrapping-using-rails/">Scrapping using rails</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/22/center-align-image-with-in-a-div-using-css/">Center align image with in a div using css</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/17/yahoo-open-hack-2012/">Yahoo open hack 2012</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/30/ubuntu-to-mac/">Ubuntu to MAC</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/my-first-post-on-webgl/">my first post on webgl</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Karthik KC -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

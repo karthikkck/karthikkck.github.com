@@ -1,1 +1,458 @@
-My Octopress Page is coming soon &hellip;
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Karthik KC</title>
+  <meta name="author" content="Karthik KC">
+
+  
+  <meta name="description" content="Performing scrapping using rails is something new to me at this time. I had an experience with php where I had used simple_html_dom_parser library to &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://karthikkck.github.com/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="/atom.xml" rel="alternate" title="Karthik KC" type="application/atom+xml">
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Karthik KC</a></h1>
+  
+    <h2>my life, rails, ruby, webgl, js, ember.js, backbone.js</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:karthikkck.github.com" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/10/22/scrapping-using-rails/">Scrapping Using Rails</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-10-22T17:01:00+05:30" pubdate data-updated="true">Oct 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Performing scrapping using rails is something new to me at this time. I had an experience with php where I had used simple_html_dom_parser library to get things going along with imacros.</p>
+
+<p>With rails as stackoverlow and every blog, forum around says, I started with nokogiri. In the process I realized that I cannot click on any of the links using &#8220;onclick&#8221; event. As &#8220;onclick&#8221; is a javascript event and nokogiri does not support this.</p>
+
+<p>Now my search starts for a gem which can support javascript scrapping. Finally I figured out that there is no as such a scrapping gem like nokogiri which supports js, but we can use front-end testing gems for this. Some gem which opens a browser window at the background does the events like clicks, login, etc. on a real instance of browser running at the background.</p>
+
+<p>Finally I found the best one ( from what I read and experienced ) watir, headless. The following are the gems:</p>
+
+<pre><code>gem 'watir-webdriver'
+gem 'headless'
+</code></pre>
+
+<h2>A summary of what these gems can do:</h2>
+
+<ol>
+<li>They can fill in the forms - fill input textbox, select options, etc.</li>
+<li>They can login to a system with sessions and cookies like a real browser ( of course it is running on a real browser )</li>
+<li>They can read the html of a page and we can store the html in a variable for further processing ( here is an issue )</li>
+</ol>
+
+
+<p>Yes, we get the html but I found that watir is not that efficient in parsing the html. So I decided to use nokogiri gem for this.</p>
+
+<p>Tips &amp; code samples:</p>
+
+<p>use &#8220;sleep 0.5&#8221; efficiently throughout your code. This is necessary because it takes some time to get the html of the page when you visit a website on a browser.</p>
+
+<h4>Wait until some html gets loaded:</h4>
+
+<pre><code>until browser.link(:class =&gt; 'login-button').exists? do
+  sleep sleepTime
+end
+</code></pre>
+
+<p>If you are getting an alert window as soon as you visit a page, use this code:</p>
+
+<pre><code>begin
+  browser.goto('http://www.google.co.in')
+rescue Selenium::WebDriver::Error::UnhandledAlertError =&gt; e
+  # just to ignore the alert popup in the page
+end
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/22/center-align-image-with-in-a-div-using-css/">Center Align Image With in a Div Using Css</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-22T11:21:00+05:30" pubdate data-updated="true">Aug 22<span>nd</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h3>HTML Code</h3>
+
+<pre><code>&lt;div class="container"&gt;
+  &lt;img src="#" /&gt;
+&lt;/div&gt;
+</code></pre>
+
+<h3>CSS Code</h3>
+
+<pre><code>.container {
+  position: relative;
+}
+img {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  margin: auto;
+}
+</code></pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/08/17/yahoo-open-hack-2012/">Yahoo Open Hack 2012</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-08-17T13:22:00+05:30" pubdate data-updated="true">Aug 17<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>openhackindia2012 is my first participation in Yahoo!! open hack, and it was so much fun to be there with 700+ hackers around. I was in a team of 4 passionate coders. We all stayed up whole night and coded our hack continuously for 24 hours.</p>
+
+<h3>What we did?</h3>
+
+<p>We worked on a travel related application which you can see here <a href="http://trippin.herokuapp.com" target="_blank">Trippin</a> ( if link still exists :) ). We built an application which works like this.</p>
+
+<h4>User needs to input the following fields:</h4>
+
+<ol>
+<li>A place which user wants to visit</li>
+<li>His/her departure date and time</li>
+<li>His/her arrival date and time</li>
+</ol>
+
+
+<h4>What user gets from our hack in a single scroll free screen:</h4>
+
+<ol>
+<li>Weather report - weather condition of the place for all the days that user is planning to stay there</li>
+<li>Route Map - directions on how to reach the place</li>
+<li>Travel by bus - buses available to reach the place</li>
+<li>Travel by Flight - flights available to reach the place</li>
+<li>Places to Visit - tourist attraction around the place</li>
+<li>Stay - best hotels to stay in</li>
+<li>Restaurants - restaurants suggestion</li>
+</ol>
+
+
+<p>All 4 members of the team were so passionate that we finished the application development in some 20 hrs continuous non stop coding. I love to attend events like this and spend time with passionate coders.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/30/ubuntu-to-mac/">Ubuntu to MAC</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-30T18:30:00+05:30" pubdate data-updated="true">Jul 30<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>I recently moved from &#8220;Ubuntu 12&#8221; to &#8220;iMac&#8221; system with lion OS 10.7. It is really a motivating factor to work on a iMac system.</p>
+
+<p>I am summarizing few issues faced when I tried to move one of the php projects from ubuntu to iMac.</p>
+
+<h3>Initial setup of MAC (for a web developer)</h3>
+
+<ol>
+<li>Install XCODE</li>
+<li>Install command line tool</li>
+<li>Install python, rvm, ruby (whatever version you need)</li>
+<li>Install brew (apt-get install in ubuntu -> brew install in mac)</li>
+<li>I love this combo - mvim, nerdtree, command-t, Ack</li>
+</ol>
+
+
+<h3>LAMP to MAMP</h3>
+
+<p>I faced following issues in moving from LAMP to MAMP:</p>
+
+<ol>
+<li>MAMP supports php 5.4.3 and we need to buy MAMP PRO if you need php 5.3</li>
+<li>So I used XAMPP as an alternative and things worked perfect</li>
+</ol>
+
+
+<h3>MAC file name case-sensitivity</h3>
+
+<p>I prefer to explain this issue with an example:</p>
+
+<pre><code>loader::model("user.php");
+
+loader::model("User.php");
+</code></pre>
+
+<p>on my ubuntu system the above two lines are considered as a single line file load, i.e &#8220;user.php&#8221; is considered as same as &#8220;User.php&#8221;.</p>
+
+<p>But this does not happen on mac and I had to rename all &#8220;User.php&#8221; usage in loading files to &#8220;user.php&#8221;</p>
+
+<h2>Conclusion:</h2>
+
+<blockquote><p>whatever it is I just love working on a MAC, specially with a iMAC and not with MAC Book Pro</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/07/19/my-first-post-on-webgl/">My First Post on Webgl</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-07-19T17:23:00+05:30" pubdate data-updated="true">Jul 19<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Hello, this is my first blog post.
+I started my 3D career when I was in final year of my BE course. I had developed a “Car Simulator” in JAVA using LWJGL ( Light Weight Java Grpahics Library ). From that time I am passionate about programming 3D stuff.</p>
+
+<p>My next step was to apply my 3D knowledge in web. In this process I came accross many software out of which I used swift 3D and did a website which I pulled down recently.</p>
+
+<p>In the course of time I just found out that webgl - a graphics library for web has been released. So I started learning it. The tutorial that I found for this is
+<a href="http://learningwebgl.com/blog/">learningwebgl.com</a></p>
+
+<p>learningwebgl.com teaches all the basic knowledge on coding 3d objects using javascript. Right now I have completed first 5 lessons on webgl and I wanted to get into a structured way of coding in webgl.</p>
+
+<p>Accidently one of my friend forced me to go through backbone.js tutorial which took my attention at the first go and I am in course of setting up a system (backbone.js inside rails) and integrating first 5 lessons on learningwebgl.com into the system.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/10/22/scrapping-using-rails/">Scrapping using rails</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/22/center-align-image-with-in-a-div-using-css/">Center align image with in a div using css</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/08/17/yahoo-open-hack-2012/">Yahoo open hack 2012</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/30/ubuntu-to-mac/">Ubuntu to MAC</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/07/19/my-first-post-on-webgl/">my first post on webgl</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - Karthik KC -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
